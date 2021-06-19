@@ -20,4 +20,4 @@ In my application I used:
 
 You can visit my apllication here => <a href=add here link> JS Quiz - let's check your your JavaScript knowledge!</a>
 
-![Alt text](./images/portfolioscreenshot.PNG?raw=true "Optional Title")
+![Alt text](./images/demo.gif "Optional Title")
