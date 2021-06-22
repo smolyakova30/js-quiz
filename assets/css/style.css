@@ -29,15 +29,20 @@ body {
     flex-direction: column;
 }
 
-.quiz-body {
+#intro, #table, #quiz-questions {
     text-align: center;
     padding: 100px;
+}
+
+#hide {
+    display: none;
 }
 
 h1 {
     margin: 0;
     font-size: 50px;
 }
+
 
 a {
     color: var(--purple);
@@ -61,6 +66,8 @@ button:hover {
     background-color: var(--pink);
     color: var(--white);
 }
+
+
 
 
 

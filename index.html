@@ -8,17 +8,16 @@
         <link rel="stylesheet" href="./assets/css/style.css">
       </head>
 <body>
-    <script src="script.js"></script>
     <header>
         <div>
-           <a class="scores">View hight scores</a> 
+           <a class="scores" href="highscores.html">View hight scores</a> 
         </div>
         <div>
            <span id="timer">Time: <span id="time-remaining">75 seconds</span></span>
         </div>
     </header>
 
-    <main class="quiz-body">
+    <main id="intro">
         <h1>Coding Quiz Challenge</h1>
         <p class="welcome-text">
             Try to answer the following code-related question within the time limit.
@@ -36,10 +35,16 @@
         
     </section>
 
+    <section id="quiz-choices">
+        
+    </section>
+
+    
+
     <!--Quiz ended-->
     <section id="end">
 
     </section>
-
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>

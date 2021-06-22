@@ -2,11 +2,14 @@
 let totalTime = 75;
 let totalTimeInterval;
 let choiceStatusTimeout; 
-let currentQuestion = 0;
+let index = 0;
+let correctChoices = 0;
 
 const start_button = document.getElementById("start-button");
 const time_remaining = document.getElementById("time-remaining");
-const quiz_section = document.querySelectorAll("quiz-questions");
+const quiz_section = document.getElementById("quiz-questions");
+const choices_section = document.getElementById("quiz-choices");
+const main_section = document.getElementById("intro");
 
 
 
@@ -19,18 +22,38 @@ class Question {
       this.indexOfCorrectChoice = indexOfCorrectChoice;
     }
   }
+const question_list = [
+{
+    question: "Commonly used data types DO NOT include:",
+    choices: ["Strings", "Booleans", "Alerts", "Numbers"],
+    correctAnswer: "Alerts",
+},
 
-const q_1 = new Question("Commonly used data types DO NOT include: ", 
-  ["Strings", "Booleans", "Alerts", "Numbers"], 2);
-const q_2 = new Question("The condition in an if / else statement is enclosed within ____.", 
-  ["Quotes", "Curly brackets", "Parentheses", "Square brackets"], 2);
-const  q_3 = new Question("Arrays in JavaScript can be used to store ____.", 
-  ["Numbers and Strings", "Other arrays", "Booleans", "All of the above"], 3);
-const  q_4 = new Question("String values must be enclosed within _____ when being assigned to variables.", 
-  ["Commas", "Curly brackets", "Quotes", "Parentheses"], 2);
-const  q_5 = new Question("A very useful tool used during development and debugging for printing content to the debugger is: ", 
-  ["JavaScript", "Terminal/Bash", "For Loops", "console.log"], 3);
-const question_list = [ q_1,  q_2,  q_3,  q_4,  q_5];
+{
+    question: "The condition in an if / else statement is enclosed within ____.",
+    choices: ["Quotes", "Curly brackets", "Parentheses", "Square brackets"],
+    correctAnswer: "Parentheses",
+},
+
+{
+    question: "Arrays in JavaScript can be used to store ____.",
+    choices: ["Numbers and Strings", "Other arrays", "Booleans", "All of the above"],
+    correctAnswer: "All of the above",
+},
+
+{
+    question: "String values must be enclosed within _____ when being assigned to variables.",
+    choices: ["Commas", "Curly brackets", "Quotes", "Parentheses"],
+    correctAnswer: "Quotes",
+},
+
+{
+    question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+    choices: ["JavaScript", "Terminal/Bash", "For Loops", "console.log"],
+    correctAnswer: "console.log",
+},
+];
+
 
 
 // event listeners 
@@ -38,7 +61,9 @@ start_button.addEventListener('click', startQuiz);
 
 //start game function
  function startQuiz(){
-     
+   displayTime();
+   startTimer(); 
+   displayQuestion(index); 
  }
 
 
@@ -48,6 +73,7 @@ start_button.addEventListener('click', startQuiz);
   }
 
   function startTimer() {
+    main_section.setAttribute("id", "hide")
     totalTimeInterval = setInterval(function() {
       totalTime--;
       displayTime();
@@ -64,10 +90,53 @@ start_button.addEventListener('click', startQuiz);
  }
 
 // function for questions
-
 // to display question
+function displayQuestion(){
+    quiz_section.textContent = question_list[index].question;
+    var currentQuestion = question_list[index]
+    choices_section.innerHTML="";
+    console.log(currentQuestion);
+    currentQuestion.choices.forEach(function(choice, i){
+        var answerButton = document.createElement("button")
+        answerButton.onclick = isChoiceCorrect
+        answerButton.textContent = choice
+        answerButton.setAttribute("value", choice)
+        choices_section.appendChild(answerButton)
+    }
+    ) 
+    
+    // nextQuestion();
+};
 
-//right answer
+//Get next question
+// function nextQuestion() {
+//     index++;
+    
+//   }
+
+  //right answer
+  function isChoiceCorrect(event) {
+      let answeredCorrectly = event.target.innerHTML === question_list[index].correctAnswer;
+    if ( answeredCorrectly) {
+        totalTime-=10;
+    }else{
+        correctChoices++;
+    }
+        index++;
+    if (question_list.length===index){
+        endGame();
+    }else{
+        displayQuestion();
+        correctWrong(answeredCorrectly);
+    }   
+  };
+
+  function correctWrong (isCorrect){
+    const correctAlert = document.createElement("p");
+    correctAlert.innerHTML = isCorrect ? 'Correct!' : 'Wrong!'
+    quiz-choices.appendChild(correctAlert);
+
+  };
 
 //wrong answer
 
