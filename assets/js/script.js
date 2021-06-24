@@ -10,8 +10,7 @@ const time_remaining = document.getElementById("time-remaining");
 const quiz_section = document.getElementById("quiz-questions");
 const choices_section = document.getElementById("quiz-choices");
 const main_section = document.getElementById("intro");
-
-
+const correct_wrong = document.getElementById("correctWrong")
 
 
 //questions for quiz
@@ -104,15 +103,8 @@ function displayQuestion(){
         choices_section.appendChild(answerButton)
     }
     ) 
-    
-    // nextQuestion();
 };
 
-//Get next question
-// function nextQuestion() {
-//     index++;
-    
-//   }
 
   //right answer
   function isChoiceCorrect(event) {
@@ -134,16 +126,15 @@ function displayQuestion(){
   function correctWrong (isCorrect){
     const correctAlert = document.createElement("p");
     correctAlert.innerHTML = isCorrect ? 'Correct!' : 'Wrong!'
-    quiz-choices.appendChild(correctAlert);
-
+    correct_wrong.appendChild(correctAlert);
+    
   };
 
-//wrong answer
+  console.log(correctChoices)
 
+//end game function
+function endGame() {
 
-
-
-
- //end game function
+}
 
 

@@ -29,9 +29,13 @@ body {
     flex-direction: column;
 }
 
+body p {
+    color: var(--black);
+}
+
 #intro, #table, #quiz-questions {
     text-align: center;
-    padding: 100px;
+    padding: 100px 15px 15px 15px;
 }
 
 #hide {
@@ -51,10 +55,14 @@ a {
 a:hover {
     color: var(--pink);
 }
-
+ 
+main button {
+display: inline;
+ }
 button {
-    display: inline-block;
+    display: block;
     padding: 5px 15px;
+    margin: 10px;
     background-color: var(--purple);
     border-radius: 10px;
     color: var(--white);
@@ -66,6 +74,39 @@ button:hover {
     background-color: var(--pink);
     color: var(--white);
 }
+
+.main-quiz {
+    margin: 0 auto;
+    max-width: 50%;
+}
+
+#quiz-choices {
+    display: contents;
+    flex-wrap: column;
+}
+
+#quiz-choices button {
+    height: 50px;
+    width: fit-content;
+    margin: 10px auto;
+}
+
+ #correctWrong p {
+    color: var(--grey);
+    font-size: 40px;
+    font-style: italic;
+    text-decoration: overline;
+    text-align: center;;
+
+}
+
+
+  
+ 
+
+
+
+
 
 
 
