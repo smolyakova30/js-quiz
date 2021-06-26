@@ -1,5 +1,5 @@
 // variables
-let totalTime = 75;
+let totalTime = 50;
 let totalTimeInterval;
 let choiceStatusTimeout; 
 let index = 0;
@@ -14,16 +14,11 @@ const main_section = document.getElementById("intro");
 const correct_wrong = document.getElementById("correctWrong");
 const common_quiz_section = document.getElementById("main-quiz");
 const final_score_section = document.getElementById("finalScore");
+let no_time;
+let page_content_section;
 
 
-//questions for quiz
-class Question {
-    constructor(question, choices, indexOfCorrectChoice) {
-      this.question = question;
-      this.choices = choices;
-      this.indexOfCorrectChoice = indexOfCorrectChoice;
-    }
-  }
+//questions for quiz 
 const question_list = [
 {
     question: "Commonly used data types DO NOT include:",
@@ -56,16 +51,26 @@ const question_list = [
 },
 ];
 
-
-
 // event listeners 
 start_button.addEventListener('click', startQuiz);
 
 //start game function
  function startQuiz(){
+    
+    console.log(page_content_section);
+    if(page_content_section){
+        page_content_section.remove();
+    }
+
+    if(no_time){
+        no_time.remove();
+    }
+
+   // common_quiz_section.removeChild();
+    
    displayTime();
    startTimer(); 
-   displayQuestion(index); 
+   displayQuestion(index);
  }
 
 
@@ -91,7 +96,6 @@ start_button.addEventListener('click', startQuiz);
      }
  }
 
-// function for questions
 // to display question
 function displayQuestion(){
     quiz_section.textContent = question_list[index].question;
@@ -143,12 +147,27 @@ function endGame() {
     quiz_section.innerHTML = "";
     choices_section.innerHTML = "";
     
-
 if (totalTime === 0){
+    quiz_section.innerHTML = "";
+    choices_section.innerHTML = "";
+    no_time = document.getElementById("noTime");
     const timeOut = document.createElement("p");
     timeOut.innerHTML = "Sorry! time out!";
-    common_quiz_section.appendChild(timeOut);
-     finalScore = 0;
+    no_time.appendChild(timeOut);
+   
+    finalScore = 0;
+    const startAgain = document.createElement("button");
+    startAgain.innerHTML = "Start Quiz"
+    no_time.appendChild(startAgain);
+    
+     startAgain.addEventListener("click", () => {
+         totalTime = 50;
+         index = 0;
+        console.log("what")
+         startQuiz();
+     });
+   
+
 
 }else{
     finalScore = totalTime;
@@ -181,21 +200,20 @@ if (totalTime === 0){
     })   
     
 }
-    document.getElementById("timer").remove(); 
+    //document.getElementById("timer").remove(); 
 }
 
-
-function displayScores () {
+function displayScores () { 
     let highScores = document.createElement("section");
-    highScores.id = "page-content"
+    highScores.id = "page-content";
     document.body.append(highScores);
-    
+    page_content_section = document.getElementById("page-content");
     let scoresHeader = document.createElement("h2");
-    scoresHeader.textContent = "High Scores"
+    scoresHeader.textContent = "High Scores";
     highScores.append(scoresHeader);
     // create list to display high scores
-    let scoresList = document.createElement("ol")
-    scoresList.id = "scoresList"
+    let scoresList = document.createElement("ol");
+    scoresList.id = "scoresList";
     highScores.append(scoresList);
     let addScores = function () {
         let scoreScrnObj = JSON.parse(localStorage.getItem("scoreTable"))
@@ -211,6 +229,7 @@ function displayScores () {
         }
     }
     addScores();
+
     // prompt user to take quiz again
     let buttonsDiv = document.createElement("div")
     buttonsDiv.className = "button-container"
@@ -231,10 +250,12 @@ function displayScores () {
     });
     // function to click start button and initiate quiz and timer
     restartButtonEl.addEventListener("click", () => {
-        let timerCreate = document.createElement("h2");
-        timerCreate.id = "timer"
-        timer = 75;
-        header.append(timerCreate);
+       // let timerCreate = document.createElement("h2");
+       // timerCreate.id = "timer"
+        totalTime = 50;
+        index = 0;
+       // time_remaining.append(timerCreate);
+    
         startQuiz();
     });
 }
