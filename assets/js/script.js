@@ -146,15 +146,15 @@ function endGame() {
     clearInterval(totalTimeInterval);
     quiz_section.innerHTML = "";
     choices_section.innerHTML = "";
+    finalScore = totalTime;
     
-if (totalTime === 0){
+if (totalTime === 0 || finalScore<=0){
     quiz_section.innerHTML = "";
     choices_section.innerHTML = "";
     no_time = document.getElementById("noTime");
     const timeOut = document.createElement("p");
-    timeOut.innerHTML = "Sorry! time out!";
+    timeOut.innerHTML = "Sorry! Time out!";
     no_time.appendChild(timeOut);
-   
     finalScore = 0;
     const startAgain = document.createElement("button");
     startAgain.innerHTML = "Start Quiz"
