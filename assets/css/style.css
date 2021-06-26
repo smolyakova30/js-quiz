@@ -80,7 +80,7 @@ button:hover {
     max-width: 50%;
 }
 
-#quiz-choices {
+#quiz-choices, #finalScore {
     display: contents;
     flex-wrap: column;
 }
@@ -99,6 +99,9 @@ button:hover {
     text-align: center;;
 
 }
+
+
+
 
 
   
