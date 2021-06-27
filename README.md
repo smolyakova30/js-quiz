@@ -11,12 +11,12 @@ Quiz description:
 - Game ends when user has no more time or the user answers all the questions
 
 In my application I used: 
--
-- 
-- 
--
--
--
+- HTML 
+- CSS
+- JavaScript
+- Arrays
+- eventListener
+- DOM
 
 You can visit my apllication here => <a href=https://smolyakova30.github.io/js-quiz/ here link> JS Quiz - let's check your your JavaScript knowledge!</a>
 
