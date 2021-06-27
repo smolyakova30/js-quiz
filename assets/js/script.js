@@ -1,5 +1,5 @@
 // variables
-let totalTime = 50;
+let totalTime = 75;
 let totalTimeInterval;
 let choiceStatusTimeout; 
 let index = 0;
@@ -13,7 +13,7 @@ const choices_section = document.getElementById("quiz-choices");
 const main_section = document.getElementById("intro");
 const correct_wrong = document.getElementById("correctWrong");
 const common_quiz_section = document.getElementById("main-quiz");
-const final_score_section = document.getElementById("finalScore");
+let final_score_section;
 let no_time;
 let page_content_section;
 
@@ -56,7 +56,7 @@ start_button.addEventListener('click', startQuiz);
 
 //start game function
  function startQuiz(){
-    
+    //final_score_section.setAttribute("class", "hide")
     console.log(page_content_section);
     if(page_content_section){
         page_content_section.remove();
@@ -143,6 +143,7 @@ function displayQuestion(){
 
 //end game function
 function endGame() {
+
     clearInterval(totalTimeInterval);
     quiz_section.innerHTML = "";
     choices_section.innerHTML = "";
@@ -161,7 +162,7 @@ if (totalTime === 0 || finalScore<=0){
     no_time.appendChild(startAgain);
     
      startAgain.addEventListener("click", () => {
-         totalTime = 50;
+         totalTime = 75;
          index = 0;
         console.log("what")
          startQuiz();
@@ -171,8 +172,10 @@ if (totalTime === 0 || finalScore<=0){
 
 }else{
     finalScore = totalTime;
+    final_score_section = document.getElementById("finalScore");
     final_score_section.innerHTML = `<p>All done!</p><br><p>Your final score is ${finalScore}</p>
                                     <p>Enter initials:</p> <input/> <button id="submit">Submit</button>`;
+    final_score_section.style.display = "block"
 
     
     let button = document.querySelector("#submit")
@@ -194,13 +197,14 @@ if (totalTime === 0 || finalScore<=0){
             localStorage.setItem("scoreTable", JSON.stringify(scoresArr))
             localStorage.setItem("playerInitials", playerInitials);
             localStorage.setItem("score", finalScore);
-            final_score_section.remove(); 
+            //final_score_section.remove(); 
+            final_score_section.style.display = "none";
             displayScores();
         }
     })   
     
 }
-    //document.getElementById("timer").remove(); 
+ 
 }
 
 function displayScores () { 
@@ -235,7 +239,7 @@ function displayScores () {
     buttonsDiv.className = "button-container"
     highScores.append(buttonsDiv);
     let restartButtonEl = document.createElement("button")
-    restartButtonEl.textContent = "Start the Quiz!"
+    restartButtonEl.textContent = "Start Quiz"
     restartButtonEl.id = "restart-btn"
     buttonsDiv.append(restartButtonEl);
     let clearScoresEl = document.createElement("button")
@@ -250,11 +254,8 @@ function displayScores () {
     });
     // function to click start button and initiate quiz and timer
     restartButtonEl.addEventListener("click", () => {
-       // let timerCreate = document.createElement("h2");
-       // timerCreate.id = "timer"
-        totalTime = 50;
+        totalTime = 75;
         index = 0;
-       // time_remaining.append(timerCreate);
     
         startQuiz();
     });

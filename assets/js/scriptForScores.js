@@ -1,6 +1,9 @@
+
+displayScores ();
+
 function displayScores () { 
     let highScores = document.createElement("section");
-    highScores.id = "page-content"
+    highScores.id = "page-content-table"
     document.body.append(highScores);
     
     let scoresHeader = document.createElement("h2");
@@ -29,29 +32,15 @@ function displayScores () {
     let buttonsDiv = document.createElement("div")
     buttonsDiv.className = "button-container"
     highScores.append(buttonsDiv);
-    let restartButtonEl = document.createElement("button")
-    restartButtonEl.textContent = "Start the Quiz!"
-    restartButtonEl.id = "restart-btn"
-    buttonsDiv.append(restartButtonEl);
     let clearScoresEl = document.createElement("button")
     clearScoresEl.textContent = "Clear High Scores"
     clearScoresEl.id = "clear-scores-btn"
     buttonsDiv.append(clearScoresEl);
-    // function to clear high scores
+
     clearScoresEl.addEventListener("click", () => {
         localStorage.clear();
         scoresList.remove();
         clearScoresEl.remove();
     });
-    // function to click start button and initiate quiz and timer
-    restartButtonEl.addEventListener("click", () => {
-       // let timerCreate = document.createElement("h2");
-       // timerCreate.id = "timer"
-        totalTime = 75;
-        index = 0;
-       // time_remaining.append(timerCreate);
-       
-       console.log("what")
-        startQuiz();
-    });
+   
 }

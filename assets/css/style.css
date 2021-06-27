@@ -42,6 +42,10 @@ body p {
     display: none;
 }
 
+.hide {
+    display: none;
+}
+
 h1 {
     margin: 0;
     font-size: 50px;
@@ -98,6 +102,28 @@ button:hover {
     text-decoration: overline;
     text-align: center;;
 
+}
+.center-block {
+    margin: 0 auto;
+
+}
+#main-quiz {
+    margin: 0 auto;
+}
+#noTime {
+    margin: 0 auto;
+}
+
+#page-content {
+    margin: 0 auto;
+}
+
+#place-holder {
+    padding: 50px;
+}
+
+#page-content-table{
+margin: 0 auto;
 }
 
 
